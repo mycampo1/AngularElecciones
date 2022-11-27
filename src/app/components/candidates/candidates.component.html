@@ -1,0 +1,52 @@
+<div class="mt-5">
+    <div style="position: relative;">
+        <h1>Candidatos</h1>
+        <button 
+        pButton 
+        type="button" 
+        label="Crear"
+        class="p-button-primary create-button" 
+        icon="pi pi-user-plus"
+        (click)="create()"
+        ></button>
+    </div>
+    <p-table [value]="candidates" [paginator]="true" [rows]="5">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nombre</th>
+                <th>Partido</th>
+                <th>Acción</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-candidate>
+            <tr>
+                <td>{{candidate.name}}</td>
+                <td>{{candidate?.party?.name}}</td>
+                <td>
+                    <button 
+                    pButton 
+                    type="button" 
+                    class="p-button-info"
+                    style="margin-right: 5px;" 
+                    icon="pi pi-eye"
+                    (click)="showDialog(candidate._id, false)"></button>
+                    <button 
+                    pButton 
+                    type="button" 
+                    class="p-button-primary"
+                    style="margin-right: 5px;" 
+                    icon="pi pi-file-edit"
+                    (click)="showDialog(candidate._id, true)"></button>
+                    <button 
+                    pButton 
+                    type="button" 
+                    class="p-button-secondary" 
+                    icon="pi pi-trash"
+                    (click)="delete(candidate._id)"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+
